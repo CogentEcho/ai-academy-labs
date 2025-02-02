@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Concept Demo</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.js"></script>
+</head>
+<body class="bg-gray-100">
+    <div class="container mx-auto px-4 py-8">
+        <!-- Demo Header -->
+        <div class="mb-8">
+            <h1 class="text-3xl font-bold mb-2">{{demo.title}}</h1>
+            <p class="text-gray-600">{{demo.description}}</p>
+        </div>
+
+        <!-- Interactive Area -->
+        <div class="bg-white rounded-lg shadow-lg p-6 mb-8">
+            <!-- Demo Viewport -->
+            <div id="demo-viewport" class="border rounded-lg p-4 mb-4 h-64">
+                <!-- Demo content will be rendered here -->
+            </div>
+
+            <!-- Controls -->
+            <div class="flex flex-wrap gap-4">
+                <div class="w-full md:w-auto">
+                    <label class="block text-sm font-medium text-gray-700 mb-2">
+                        Parameters
+                    </label>
+                    <div class="space-y-2">
+                        <!-- Parameter controls will be generated here -->
+                    </div>
+                </div>
+
+                <div class="w-full md:w-auto">
+                    <label class="block text-sm font-medium text-gray-700 mb-2">
+                        Actions
+                    </label>
+                    <div class="space-x-2">
+                        <button id="run" class="bg-blue-500 text-white px-4 py-2 rounded">
+                            Run
+                        </button>
+                        <button id="reset" class="bg-gray-500 text-white px-4 py-2 rounded">
+                            Reset
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Explanation -->
+        <div class="bg-white rounded-lg shadow-lg p-6 mb-8">
+            <h2 class="text-xl font-bold mb-4">How it Works</h2>
+            <div class="prose">
+                {{demo.explanation}}
+            </div>
+        </div>
+
+        <!-- Try It Yourself -->
+        <div class="bg-white rounded-lg shadow-lg p-6">
+            <h2 class="text-xl font-bold mb-4">Try It Yourself</h2>
+            <div class="space-y-4">
+                <p>Choose your preferred platform:</p>
+                <div class="flex flex-wrap gap-4">
+                    <a href="{{demo.colab_link}}" 
+                       class="inline-flex items-center px-4 py-2 border rounded-lg hover:bg-gray-50">
+                        <img src="/assets/images/colab-logo.png" alt="Colab" class="h-6 w-6 mr-2">
+                        Open in Colab
+                    </a>
+                    <a href="{{demo.replit_link}}" 
+                       class="inline-flex items-center px-4 py-2 border rounded-lg hover:bg-gray-50">
+                        <img src="/assets/images/replit-logo.png" alt="Replit" class="h-6 w-6 mr-2">
+                        Open in Replit
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Demo-specific JavaScript will be injected here
+        class Demo {
+            constructor() {
+                this.viewport = document.getElementById('demo-viewport');
+                this.runButton = document.getElementById('run');
+                this.resetButton = document.getElementById('reset');
+                this.setupEventListeners();
+            }
+
+            setupEventListeners() {
+                this.runButton.addEventListener('click', () => this.run());
+                this.resetButton.addEventListener('click', () => this.reset());
+            }
+
+            run() {
+                // Demo-specific run logic
+            }
+
+            reset() {
+                // Demo-specific reset logic
+            }
+
+            updateView() {
+                // Demo-specific view update logic
+            }
+        }
+
+        // Initialize demo when page loads
+        window.addEventListener('DOMContentLoaded', () => {
+            window.demo = new Demo();
+        });
+    </script>
+</body>
+</html>
