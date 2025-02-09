@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>AI Academy Labs Orchestrator</title>
+</head>
+<body>
+    <h1>AI Academy Labs Orchestrator</h1>
+
+    <h2>Generate Agent</h2>
+    <form id="generate-agent-form">
+        <label for="agent-type">Agent Type:</label>
+        <input type="text" id="agent-type" name="agent_type" required><br>
+
+        <label for="requirements">Requirements:</label>
+        <textarea id="requirements" name="requirements" required></textarea><br>
+
+        <button type="submit">Generate Agent</button>
+    </form>
+
+    <h2>Analyze Resources</h2>
+    <form id="analyze-resources-form">
+        <label for="resource-type">Resource Type:</label>
+        <input type="text" id="resource-type" name="resource_type" required><br>
+
+        <button type="submit">Analyze Resources</button>
+    </form>
+
+    <div id="result"></div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $("#generate-agent-form").submit(function(event) {
+                event.preventDefault();
+                var formData = $(this).serialize();
+
+                $.ajax({
+                    url: "/generate-agent",
+                    type: "POST",
+                    data: formData,
+                    success: function(response) {
+                        $("#result").html("<h3>Generated Agent Script:</h3><pre>" + response.agent_script + "</pre>");
+                    }
+                });
+            });
+
+            $("#analyze-resources-form").submit(function(event) {
+                event.preventDefault();
+                var formData = $(this).serialize();
+
+                $.ajax({
+                    url: "/analyze-resources",
+                    type: "POST",
+                    data: formData,
+                    success: function(response) {
+                        $("#result").html("<h3>Resource Analysis Report:</h3><pre>" + response.resource_report + "</pre>");
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
